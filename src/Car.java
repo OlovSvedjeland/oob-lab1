@@ -2,17 +2,16 @@ import java.awt.*;
 
 public abstract class Car implements Movable {
 
-    protected int nrDoors;                     // Number of doors on the car
-    protected double enginePower;              // Engine power of the car
-    protected double currentSpeed;             // The current speed of the car
-    protected Color color;                     // Color of the car
-    protected String modelName;                // The car model name
+    private int nrDoors;                     // Number of doors on the car
+    private double enginePower;              // Engine power of the car
+    private double currentSpeed;             // The current speed of the car
+    private Color color;                     // Color of the car
+    private String modelName;                // The car model name
+    private double x;
+    private double y;
+    private int direction;
 
-    protected double x;
-    protected double y;
-    protected int direction;
-
-    protected Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double x, double y, double direction) {
+    protected Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
@@ -46,56 +45,26 @@ public abstract class Car implements Movable {
         direction = (direction + 1) % 4; //Vänder medurs
     }
 
-    protected void stopEngine(){
-        currentSpeed = 0;
-    }
-
-    protected int getNrDoors(){
-        return nrDoors;
-    }
-
-    protected double getEnginePower(){
-        return enginePower;
-    }
-
-    protected double getCurrentSpeed(){
-        return currentSpeed;
-    }
-
-    protected Color getColor(){
-        return color;
-    }
-
-    protected abstract double speedFactor();
-
-    protected void setColor(Color clr){
-        color = clr;
-    }
-
-    protected void startEngine(){
-        currentSpeed = 0.1;
-    }
-
-    protected void incrementSpeed(double amount) {
-        currentSpeed = Math.min(currentSpeed + getCurrentSpeed() * amount, enginePower);
-    }
-
-    protected void decrementSpeed(double amount) {
-        currentSpeed = Math.max(currentSpeed - getCurrentSpeed() * amount, 0);
-    }
-
-    protected void gas(double amount){
+    public void gas(double amount){
         if (amount < 0 || amount > 1) {
             throw new IllegalArgumentException("Amount of Gas must be more than 0 and less than 1.");
         }
         incrementSpeed(amount);
     }
 
-    protected void brake(double amount){
+    public void brake(double amount){
         if (amount < 0 || amount > 1) {
             throw new IllegalArgumentException("Amount of Break must be more than 0 and less than 1.");
         }
         decrementSpeed(amount);
+    }
+
+    public void stopEngine(){
+        currentSpeed = 0;
+    }
+
+    public void startEngine(){
+        currentSpeed = 0.1;
     }
 
     public double getX() {
@@ -109,6 +78,39 @@ public abstract class Car implements Movable {
     public int getDirection() {
         return direction;
     }
+
+    public Color getColor(){
+        return color;
+    }
+
+    public int getNrDoors(){
+        return nrDoors;
+    }
+
+    public void setColor(Color clr){
+        color = clr;
+    }
+
+
+
+
+    protected final double getEnginePower(){
+        return enginePower;
+    } //För att få åtkomst till private instanstvariabel
+
+    protected final double getCurrentSpeed(){
+        return currentSpeed;
+    } //För att få åtkomst till private instanstvariabel
+
+    protected abstract double speedFactor(); // Abstrakt då subklasserna har olika implementationer
+
+    protected void incrementSpeed(double amount) {
+        currentSpeed = Math.min(currentSpeed + getCurrentSpeed() * amount, enginePower);
+    } // Enbart protected så att subklasser kan ändra acceleration.
+
+    protected void decrementSpeed(double amount) {
+        currentSpeed = Math.max(currentSpeed - getCurrentSpeed() * amount, 0);
+    }// Enbart protected så att subklkasser kan ändra deacceralation.
 
 
 }

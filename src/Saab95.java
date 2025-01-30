@@ -5,12 +5,12 @@ public class Saab95 extends Car{
 
     // Standardkonstruktor
     public Saab95() {
-        this(2, Color.red, 125, false, 0, "Saab95",0 ,0, 0);
-    }
+        this(2, Color.red, 125, false, 0, "Saab95");//Har tagit bort parametrarna x,y & direction.
+    } //Vi kan nog ta bort x, y och direction och current speed?
 
     //Anpassningsbar Konstruktor
-    public Saab95(int nrDoors,Color color, double enginePower, boolean turboOn, double currentSpeed, String modelName, double x, double y, int direction){
-        super(nrDoors, enginePower, currentSpeed, color, modelName, x, y, direction);
+    public Saab95(int nrDoors,Color color, double enginePower, boolean turboOn, double currentSpeed, String modelName){ //Har tagit bort parametrarna x,y & direction.
+        super(nrDoors, enginePower, currentSpeed, color, modelName); //Har tagit bort parametrarna x,y & direction.
         this.turboOn = turboOn;
     }
 
