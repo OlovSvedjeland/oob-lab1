@@ -6,7 +6,7 @@ class TestCar extends Car {
     }
 
     @Override
-    public double speedFactor() {
-        return getEnginePower() * 0.01; // Enkel implementation för test
+    public double speedFactor() { // Enkel implementation för test
+        return getEnginePower() * 0.01;
     }
 }

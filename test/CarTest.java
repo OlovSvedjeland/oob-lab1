@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
 
-    // Skapa en instans av TestCar
+    // Instans av TestCar
     TestCar car = new TestCar(4, 100, 0, Color.blue, "TestModel", 0, 0, 0);
 
     @Test
