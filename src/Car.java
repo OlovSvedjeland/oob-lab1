@@ -106,7 +106,7 @@ public abstract class Car implements Movable {
 
     protected void incrementSpeed(double amount) {
         currentSpeed = Math.min(currentSpeed + getCurrentSpeed() * amount, enginePower);
-    } // Enbart protected så att subklasser kan ändra acceleration.
+    } // Enbart protected så att subklasser kan ändra acceleration. Kan göras privat och gå via gas() istället
 
     protected void decrementSpeed(double amount) {
         currentSpeed = Math.max(currentSpeed - getCurrentSpeed() * amount, 0);

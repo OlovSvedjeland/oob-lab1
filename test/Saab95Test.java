@@ -22,18 +22,17 @@ class Saab95Test {
         assertFalse(Saab.getTurbo());
     }
 
-
     @Test
     void speedFactorTurboOn() {
         Saab.setTurboOn();
-        double expectedSpeedFactor = 100 * 0.01 * 1.3;
+        double expectedSpeedFactor = Saab.getEnginePower() * 0.01 * 1.3;
         assertEquals(expectedSpeedFactor,Saab.speedFactor(), 0.0001); //Delta är toleransnivå för avrundsfel
     }
 
     @Test
     void speedFactorTurboOff(){
         Saab.setTurboOff();
-        double expectedSpeedFactor = 100 * 0.01 * 1.0;
+        double expectedSpeedFactor = Saab.getEnginePower() * 0.01 * 1.0;
         assertEquals(expectedSpeedFactor,Saab.speedFactor(), 0.0001);
 
     }
